@@ -45,8 +45,8 @@ RUN pip3 install transformers
 RUN pip3 install pyrotechnics
 
 RUN git clone https://github.com/CIVA-Lab/VulCNNMiz
-RUN unzip ./VulCNN/pdgs/No-Vul.zip -d ./VulCNN/pdgs
-RUN unzip ./VulCNN/pdgs/Vul.zip -d ./VulCNN/pdgs
+RUN unzip ./VulCNNMiz/pdgs/No-Vul.zip -d ./VulCNNMiz/pdgs
+RUN unzip ./VulCNNMiz/pdgs/Vul.zip -d ./VulCNNMiz/pdgs
 
 RUN apt install -y curl
 RUN apt install -y openjdk-17-jdk openjdk-17-jre
