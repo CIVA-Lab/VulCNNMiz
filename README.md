@@ -94,7 +94,7 @@ Refer to [sent2vec](https://github.com/epfml/sent2vec#train-a-new-sent2vec-model
 (For convenience, we share a simple sent2vec model [here](https://drive.google.com/file/d/1o_xP_kaZBV5ghZ1WjKzXBnQYilED2PMw/view?usp=sharing) trained by using our sard dataset. If you want to achieve better performance of VulCNN, you'd better train a new sent2vec by using larger dataset such as Linux Kernel.)
 
 #### Step 4: Generate images from the pdgs
-Generate Images from the pdgs with ImageGeneration.py, this step will output a .pkl file for each .dot file.
+Generate Images from the pdgs with ImageGeneration.py, this step will output a .pkl file for each .dot file. If `python` doesn't work, please try `python3`.
 ```
 python ImageGeneration.py -i ./pdgs/Vul -o ./pdgs/outputs/Vul -m ../model.bin
 python ImageGeneration.py -i ./pdgs/No-Vul -o ./pdgs/outputs/No-Vul  -m ../model.bin
