@@ -74,13 +74,14 @@ def main():
     input_path = args.input
     output_path = args.out
     kfold_num = args.num
+    kfold_num_int = int(kfold_num)
     gather_data(input_path, output_path)
     # split_data("/root/data/qm_data/vulcnn/data/pkl/ffmpeg/all_data.pkl", "/root/data/qm_data/vulcnn/data/pkl/ffmpeg/")
     # split_data("/root/data/qm_data/vulcnn/data/pkl/qemu/all_data.pkl", "/root/data/qm_data/vulcnn/data/pkl/qemu/")
     # split_data("/root/data/qm_data/vulcnn/data/pkl/sard/all_data.pkl", "/root/data/qm_data/vulcnn/data/pkl/sard/")
     # split_data("/root/data/qm_data/vulcnn/data/pkl/sard-1/all_data.pkl", "/root/data/qm_data/vulcnn/data/pkl/sard-1/")
     # split_data("/root/data/qm_data/vulcnn/data/pkl/sard-2/all_data.pkl", "/root/data/qm_data/vulcnn/data/pkl/sard-2/")
-    split_data(output_path + "all_data.pkl", output_path, kfold_num)
+    split_data(output_path + "all_data.pkl", output_path, kfold_num_int)
     
 
 if __name__ == "__main__":
