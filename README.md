@@ -96,8 +96,8 @@ Refer to [sent2vec](https://github.com/epfml/sent2vec#train-a-new-sent2vec-model
 #### Step 4: Generate images from the pdgs
 Generate Images from the pdgs with ImageGeneration.py, this step will output a .pkl file for each .dot file.
 ```
-python ImageGeneration.py -i ./data/sard/pdgs/Vul -o ./data/sard/outputs/Vul -m ./data/data_model.bin
-python ImageGeneration.py -i ./data/sard/pdgs/No-Vul -o ./data/sard/outputs/No-Vul  -m ./data/data_model.bin
+python ImageGeneration.py -i ./pdgs/Vul -o ./pdgs/outputs/Vul -m ../model.bin
+python ImageGeneration.py -i ./pdgs/No-Vul -o ./pdgs/outputs/No-Vul  -m ../model.bin
 ```
 #### Step 5: Integrate the data and divide the training and testing datasets
 Integrate the data and divide the training and testing datasets with generate_train_test_data.py, this step will output a train.pkl and a test.pkl file.
