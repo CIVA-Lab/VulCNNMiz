@@ -12,6 +12,7 @@ from torch.cuda.amp import autocast
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 from sklearn.metrics import confusion_matrix
+from sklearn.metrics import multilabel_confusion_matrix
 from transformers import AdamW, get_linear_schedule_with_warmup
 from sklearn.metrics import precision_recall_fscore_support
 
@@ -46,7 +47,9 @@ def get_accuracy(labels, prediction):
 
 def get_MCM_score(labels, predictions):
     accuracy = get_accuracy(labels, predictions)
-    precision, recall, f_score, true_sum, MCM = precision_recall_fscore_support(labels, predictions,average='macro')
+    #precision, recall, f_score, true_sum, MCM = precision_recall_fscore_support(labels, predictions,average='macro')
+    MCM = multilabel_confusion_matrix(labels, predictions)
+    
     tn = MCM[:, 0, 0]
     fp = MCM[:, 0, 1]
     fn = MCM[:, 1, 0] 
@@ -121,7 +124,7 @@ class TextCNN(nn.Module):
 
 class CNN_Classifier():
     def __init__(self, max_len=100, n_classes=2, epochs=100, batch_size = 32, learning_rate = 0.001, \
-                    result_save_path = "/root/data/qm_data/vulcnn/data/results", item_num = 0, hidden_size = 128):
+                    result_save_path = "./results", item_num = 0, hidden_size = 128):
         self.model = TextCNN(hidden_size)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.max_len = max_len
@@ -233,3 +236,8 @@ class CNN_Classifier():
                     "train_score": train_score, "val_score": val_score}
             sava_data(self.result_save_path, learning_record_dict)
             print("\n")
+        torch.save({
+            'item_number': self.item_num,
+            'model_state_dict': self.model.state_dict(),
+            'optimizer_state_dict': self.optimizer.state_dict(),
+            }, './weights/' + str(self.item_num) + '_torchmodel_weights.pth')
