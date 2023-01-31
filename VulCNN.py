@@ -27,7 +27,7 @@ def main():
     for item_num in range(5):
         train_df, eval_df = get_kfold_dataframe(pathname = data_path, item_num = item_num)
         classifier = CNN_Classifier(result_save_path = data_path.replace("pkl", "results"), \
-            item_num = item_num, epochs=200, hidden_size = hidden_size)
+            item_num = item_num, epochs=100, hidden_size = hidden_size)
         classifier.preparation(
             X_train=train_df['data'],
             y_train=train_df['label'],
