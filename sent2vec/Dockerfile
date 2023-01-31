@@ -31,7 +31,6 @@ RUN apt-get install -y wget
 
 RUN wget "https://drive.google.com/u/0/uc?id=1o_xP_kaZBV5ghZ1WjKzXBnQYilED2PMw&export=download&confirm=t&uuid=7b95fffe-7ac4-47e9-a447-cbe101635481" -O model.bin
 RUN apt-get install nano
-RUN git clone https://github.com/ekincanufuktepe/VulCNN.git
 RUN apt-get update
 RUN apt-get install -y graphviz graphviz-dev
 
@@ -45,5 +44,16 @@ RUN pip3 install pretty table
 RUN pip3 install transformers
 RUN pip3 install pyrotechnics
 
+RUN git clone https://github.com/CIVA-Lab/VulCNNMiz
 RUN unzip ./VulCNN/pdgs/No-Vul.zip -d ./VulCNN/pdgs
 RUN unzip ./VulCNN/pdgs/Vul.zip -d ./VulCNN/pdgs
+
+RUN apt install -y curl
+RUN apt install -y openjdk-17-jdk openjdk-17-jre
+
+RUN mkdir ./joern
+RUN cd joern && wget https://github.com/joernio/joern/releases/latest/download/joern-install.sh
+RUN cd joern && chmod +x ./joern-install.sh
+RUN cd joern && ./joern-install.sh
+RUN cd joern && unzip joern-cli.zip
+
