@@ -34,7 +34,6 @@ def forward_slice(dot,out):
     dot = dot.replace(".dot","")
     file = "./dictionaries/"+substring + dot + ".txt"
     a_dictionary = {}
-   # print(file)
     #file_exists = os.path.exists(file)
     a_file = open(file)
     for line in a_file:
@@ -42,7 +41,7 @@ def forward_slice(dot,out):
         a_dictionary[key] = value
     return a_dictionary
 
-def image_generation(dot):
+def image_generation(dot,out):
     try:
         pdg = graph_extraction(dot)
         labels_dict = nx.get_node_attributes(pdg, 'label')
@@ -53,7 +52,6 @@ def image_generation(dot):
             code = code.replace("static void", "void")
             labels_code[label] = code
     
-        #print(labels_code)
         #degree_cen_dict = nx.degree_centrality(pdg)
         closeness_cen_dict = nx.closeness_centrality(pdg)
         forward_slice_dict = forward_slice(dot,out)
@@ -63,10 +61,7 @@ def image_generation(dot):
         G.add_nodes_from(pdg.nodes())
         G.add_edges_from(pdg.edges())
         katz_cen_dict = nx.katz_centrality(G)
-        # print(degree_cen_dict)
-        # print(closeness_cen_dict)
-        # print(harmonic_cen_dict)
-        # print(katz_cen_dict)
+
     
         #degree_channel = []
         closeness_channel = []
@@ -99,14 +94,13 @@ def write_to_pkl(dot, out, existing_files):
     if dot_name in existing_files:
         return None
     else:
-        print(dot_name)
-        channels = image_generation(dot)
+        channels = image_generation(dot,out)
         if channels == None:
             return None
         else:
-            (degree_channel, closeness_channel, katz_channel) = channels
+            (forward_slice_channel, closeness_channel, katz_channel) = channels
             out_pkl = out + dot_name + '.pkl'
-            data = [degree_channel, closeness_channel, katz_channel]
+            data = [forward_slice_channel, closeness_channel, katz_channel]
             with open(out_pkl, 'wb') as f:
                 pickle.dump(data, f)
 
