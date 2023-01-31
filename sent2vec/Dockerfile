@@ -40,7 +40,7 @@ RUN pip3 install lap
 RUN pip3 install torch
 RUN pip3 install -U scikit-learn
 RUN pip3 install tqdm
-RUN pip3 install pretty table
+RUN pip3 install https://files.pythonhosted.org/packages/ba/b6/8e78337766d4c324ac22cb887ecc19487531f508dbf17d922b91492d55bb/prettytable-3.6.0.tar.gz
 RUN pip3 install transformers
 RUN pip3 install pyrotechnics
 
