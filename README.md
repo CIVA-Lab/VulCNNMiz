@@ -107,7 +107,7 @@ python generate_train_test_data.py -i ./pdgs/outputs -o ./pdgs/pkl/ -n 5
 ```
 #### Step 6: Train with CNN
 ```
-python VulCNN.py -i ./data/sard/pkl
+python VulCNN.py -i ./pdgs/pkl
 ```
 
 ## Publication
